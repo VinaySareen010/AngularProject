@@ -1,0 +1,19 @@
+<mat-toolbar color="Secondary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon >menu</mat-icon>
+    </button>
+    <h1>Product Shopping</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/home'"> Home</a>
+      <a mat-button [routerLink]="'/about'"> About </a>
+      <a mat-button [routerLink]="'/product'"> Product </a>
+      <a mat-button routerLink="user">User</a>
+
+    </div>
+  </mat-toolbar-row>  
+</mat-toolbar>
+<div>
+  <router-outlet></router-outlet>
+</div>

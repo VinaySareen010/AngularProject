@@ -19,6 +19,10 @@
               <mat-label>Sub Category</mat-label>
               <input matInput [(ngModel)]="newProduct.subCategoryId" name="subCategoryId">
        </mat-form-field>
+       <!-- <mat-form-field>
+              <mat-label>Choose Image</mat-label>
+       <input type="file" matInput [(ngModel)]="newProduct.image" name="image"> 
+       </mat-form-field> -->
             <div mat-dialog-actions>
               <button mat-button mat-dialog-close>No Thanks</button>
               <button mat-button type="submit" (click)="saveProduct()">Save</button>

@@ -1,5 +1,6 @@
+
 <mat-toolbar color="Secondary">
-  <mat-toolbar-row>
+  <mat-toolbar-row class="Secondary">
     <button mat-icon-button>
       <mat-icon >menu</mat-icon>
     </button>
@@ -10,10 +11,12 @@
       <a mat-button [routerLink]="'/about'"> About </a>
       <a mat-button [routerLink]="'/product'"> Product </a>
       <a mat-button routerLink="user">User</a>
-
+      <a class="register-button" mat-raised-button color="primary" routerLink="register">Register</a>
+      <a class="login-button" mat-raised-button color="warn" routerLink="login">Login</a>
     </div>
-  </mat-toolbar-row>  
+  </mat-toolbar-row>
 </mat-toolbar>
 <div>
   <router-outlet></router-outlet>
 </div>
+

@@ -5,41 +5,36 @@
   </ng-container>
 </table> --> 
 
-<li>
-  <button mat-raised-button (click)="openDialog()">New Product</button>
-</li>
+  <button  mat-raised-button class="new-Button" (click)="openDialog($event)" >New Product</button>
 <div mat-dialog-content></div>
-<div>
-<ng-container *ngFor="let product of products">
-  <mat-card>
+<div >
+<ng-container class="ex-card" size="50%" *ngFor="let product of products|paginate: { itemsPerPage: 4, currentPage: p };let i=index">
+  <mat-card class="container">
     <mat-card-header>
       <img img mat-card-lg-image [src]="product.image" alt="Product image">
       </mat-card-header>
       <mat-card-content>
         <mat-card-title>{{product.title}}</mat-card-title>
         <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+        <mat-card-title>${{product.price}}</mat-card-title>
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary">Detail</button>
         <button mat-raised-button color="accent">AddToCart</button>
       </mat-card-actions>
       <mat-card-actions>
-        <button mat-raised-button >Edit Product</button>
-        <button mat-raised-button color="warn">Delete Product</button>
+        <button mat-raised-button  (click)="openDialog($event,i)">Edit Product</button>
+        <button mat-raised-button color="warn" (click)="onDelete($event,i)">Delete Product</button>
       </mat-card-actions>
     </mat-card>
 </ng-container>
 </div>
-
-
-
-
-
+<pagination-controls class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
 <br>
 <br>
 
 
-<table mat-table [dataSource]="products" class="mat-elevation-z8">
+<!-- <table mat-table [dataSource]="products" class="mat-elevation-z8">
 
  
   <ng-container matColumnDef="title">
@@ -66,7 +61,7 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+</table> -->
 
 
 

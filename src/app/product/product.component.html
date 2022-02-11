@@ -1,31 +1,48 @@
-<form  >
-<div mat-dialog-content >
-       <p>Add New Product</p>
+<form [formGroup]="product" (ngSubmit)="submit()">
+<div  class="mat-dialog-content" mat-dialog-content>
+       <h1 class="example-label" mat-dialog-title >{{product.value.id==0 ? "Add New Product" : "Edit Product"}}</h1> 
        <mat-form-field appearance="fill">
               <mat-label>Title</mat-label>
-              <input matInput [(ngModel)]="newProduct.title" name="title">
+              <input matInput formControlName="title">
        </mat-form-field>
             <br>
        <mat-form-field appearance="fill">
               <mat-label>Description</mat-label>
-              <input matInput [(ngModel)]="newProduct.description" name="description">
+              <input matInput formControlName="description">
        </mat-form-field>
             <br>
        <mat-form-field appearance="fill">
               <mat-label>Price</mat-label>
-              <input matInput [(ngModel)]="newProduct.price" name="price">
+              <input matInput formControlName="price">
        </mat-form-field>
-       <mat-form-field appearance="fill">
+       <br>
+       <!-- <mat-form-field appearance="fill">
               <mat-label>Sub Category</mat-label>
               <input matInput [(ngModel)]="newProduct.subCategoryId" name="subCategoryId">
-       </mat-form-field>
-       <!-- <mat-form-field>
-              <mat-label>Choose Image</mat-label>
-       <input type="file" matInput [(ngModel)]="newProduct.image" name="image"> 
        </mat-form-field> -->
+       <mat-form-field appearance="fill">
+              <mat-label>Sub-Category</mat-label>
+              <mat-select formControlName="subCategoryId">
+                     <mat-option *ngFor="let subCat of subCategory" [value]="subCat.id">{{subCat.name}}</mat-option>
+              </mat-select>
+       </mat-form-field>
+                 
+       <br>
+       <div>
+              <input class="example-upload" #uploadFile type="file" (change)="onUploadChange($event)"/>
+            
+       </div> 
+       
+       <!-- <input  type="file" id="filePicker" (change)="onUploadChange($event)"> -->
+       <!-- <div (click)="uploadFile.click()">
+              <button mat-raised-button color="primary">Choose File</button>
+              <input #uploadFile (change)="upload($event)" type='file' style="display:none" [(ngModel)]="newProduct.image" name="image"  /> 
+       </div> -->
             <div mat-dialog-actions>
               <button mat-button mat-dialog-close>No Thanks</button>
-              <button mat-button type="submit" (click)="saveProduct()">Save</button>
+              <button  mat-button type="submit">{{product.value.id==0 ? "Save Product":"Update Product"}}</button>
+              
        </div>
 </div>
 </form>
+<img class="onChangeImage" *ngIf="product.value.image" mat-card-lg-image [src]="image" alt="Product image">

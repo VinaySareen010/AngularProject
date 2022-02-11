@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './product';
+import { SubCategory } from './sub-category';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class ProductService {
   }
   deleteProduct(id:number):Observable<any>
   {
-    return this.httpclient.delete<any>("https://localhost:44370/api/Product?id="+id);
+    return this.httpclient.delete<any>("https://localhost:44370/api/Product/DeleteProduct?id="+id);
+  }
+  getsubCategories():Observable<SubCategory[]>
+  {
+    return this.httpclient.get<SubCategory[]>("https://localhost:44370/api/SubCategory");
   }
 }

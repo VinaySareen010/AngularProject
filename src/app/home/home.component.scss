@@ -4,16 +4,37 @@ table {
      }
      mat-card
      {
+      
        width: 20%;
        height: 20%;
-       float: left;
        margin: 1%;
-       border-width: 10px;
+       float: left;
      }
-     button
+     .ngx-pagination
      {
-       margin: 20px;
+        // position:absolute;
+        bottom: 0;
+        float: right;
+       margin-right: 700px;
      }
+     .container
+     {
+      margin-top: 1%;
+       height: 400px;
+     }
+     .new-Button
+     {
+       background-color:yellow;
+       color: blue;
+       float: left;
+       margin-left: 1350px;
+       margin-top: 2%;
+     }
+
+     
+
+  
+    
      
  
      

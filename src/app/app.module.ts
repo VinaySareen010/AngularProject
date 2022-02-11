@@ -14,10 +14,18 @@ import{ MatToolbarModule}from '@angular/material/toolbar';
 import{ MatIconModule}from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatSelectModule } from '@angular/material/select';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import{ MatSliderModule } from '@angular/material/slider'
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +33,10 @@ import { MatInputModule } from '@angular/material/input';
     HomeComponent,
     AboutComponent,
     ProductComponent,
-    UserComponent
+    UserComponent,
+    LoginComponent,
+    RegisterComponent
+    
     
   ],
   imports: [
@@ -41,7 +52,14 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgxPaginationModule,
+    MatSelectModule,
+    MatSliderModule,
+    ReactiveFormsModule
+    
 
 
 

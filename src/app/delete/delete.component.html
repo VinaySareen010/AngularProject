@@ -1,0 +1,21 @@
+<div class="container">
+       <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+              <mat-card class="box">
+                     <mat-card-header>
+                            <img class="image" img mat-card-lg-image src="/assets/images/warrning.png" alt="Warrning">
+                     </mat-card-header>
+                     <mat-card-title class="warrning3" fxLayoutAlign="center center"><p>Are you sure, want to delete <b>{{title}}</b>?</p></mat-card-title>
+                     <mat-card class="matwarrning">
+                            <mat-card-subtitle class="warrning" >Warning</mat-card-subtitle>
+                            <mat-card-subtitle class="warrnin" >You can't recover this data again.</mat-card-subtitle>
+                     </mat-card>
+                     <mat-action-list class="button">
+                            <button mat-raised-button class="cancel" mat-dialog-close>Cancel</button>
+                            <button mat-raised-button class="delete" color="warn" (click)="onDelete()">Delete</button>
+                     </mat-action-list>
+              </mat-card>
+       </div>
+</div>
+
+
+     

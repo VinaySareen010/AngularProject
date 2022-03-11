@@ -1,11 +1,15 @@
 .login-main{
        margin-top: 10%;
+      
        }
        .box{
-              background-color:seashell;
-       text-align: center;
+       background-color:white;
+       // text-align: center;
        width: 70%;
-       height: 70%;
+      
+       mat-card{
+              height: 100%;
+       }
        
        }
        .card-header
@@ -15,7 +19,7 @@
        }
        .login-wrapper
        {
-              margin-top: 45px;
+              margin-top: 100px;
               margin-left: 800px;
                
        }
@@ -41,4 +45,18 @@
        .example
        {
          width: 70%;
+         
        }
+       .passwordEmailError
+       {
+              color: rgba(236, 39, 39, 0.884);
+              text-size-adjust: 1px;
+              font-size: 12px;
+              
+       }
+       .spinner
+       {
+              margin: auto;
+              margin-bottom: 0px;
+       }
+       

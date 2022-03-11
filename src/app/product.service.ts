@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from './product';
 import { SubCategory } from './sub-category';
@@ -7,9 +8,10 @@ import { SubCategory } from './sub-category';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService{
 
   constructor(private httpclient:HttpClient) { }
+ 
   GetAllProduct():Observable<Product[]>
   {
     return this.httpclient.get<Product[]>("https://localhost:44370/api/Product/GetAllProducts")

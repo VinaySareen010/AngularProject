@@ -3,7 +3,7 @@ export class User {
        userName:any;
        email:any;
        password:any;
-      // registerDateTime:any;
+       //registerDateTime:any;
        confirmPassWord:any;
        image:any;
        constructor(){
@@ -12,7 +12,7 @@ export class User {
               this.email=null;
               this.password=null;
               this.confirmPassWord=null;
-             // this.registerDateTime=0;
+              //this.registerDateTime=null;
               this.image=null;
        }
 }

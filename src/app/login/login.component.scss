@@ -3,21 +3,29 @@
        }
        .box{
               background-color:seashell;
-       text-align: center;
-       width: 50%;
-       height: 70%;
+              width: 50%;
+              height: 70%;
        
        }
        .card-header
        {
               color: blue;
-              text-align: center;
+              
        }
        .login-wrapper
        {
-              margin-top: 145px;
+              margin-top: 120px;
               margin-left: 775px;
-              text-align: center;
+             
+       }
+       .example
+       {
+         width: 70%;
+       }
+       .error
+       {
+              margin-left: 3px;
+              font-size: 14px;
        }
        
      

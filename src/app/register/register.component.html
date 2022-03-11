@@ -4,46 +4,65 @@
                      <mat-card-title class="card-header">Register</mat-card-title>
               </mat-card-header>
               <form [formGroup]="register" (ngSubmit)="registerClick()">
-                     <mat-card-content >
-                            <mat-form-field appearance="fill" class="example">
+                     <mat-card-content>
+                            <mat-form-field appearance="fill" class="example" (keyup)="debounceUserName()">
                                    <mat-label>UserName</mat-label>
                                    <input matInput type="text" id="name" formControlName="userName">
-                                   <mat-error *ngIf="register.get('userName')?.invalid">{{getErrorMessagename()}}</mat-error>
+                                   <mat-hint class="passwordEmailError"
+                                          *ngIf="register.get('userName')?.invalid && register.get('userName')?.touched">
+                                          {{getErrorMessagename()}}</mat-hint>
+                                   <mat-hint class="passwordEmailError"
+                                          *ngIf="userNameError && register.value.userName"> {{userNameError}}</mat-hint>
                             </mat-form-field>
                             <br>
                             <mat-form-field appearance="fill" class="example">
                                    <mat-label>Email</mat-label>
-                                   <input id="input" matInput formControlName="email" name="email">
-                                   <mat-error *ngIf="register.get('email')?.invalid">{{getErrorMessage()}}</mat-error>
+                                   <input id="input" #email matInput formControlName="email" name="email"
+                                          (keyup)="debounceEmail()">
+                                   <mat-hint class="passwordEmailError"
+                                          *ngIf="register.get('email')?.touched && register.get('email')?.invalid">
+                                          {{getErrorMessage()}}</mat-hint>
+                                   <mat-hint class="passwordEmailError" *ngIf="emailError && register.value.email">
+                                          {{emailError}}</mat-hint>
                             </mat-form-field>
+                            <!-- <mat-error *ngIf="register.get('email')?.hasError ('serverError')">{{register.get('email')?.hasError ('serverError')}}</mat-error> -->
                             <br>
                             <mat-form-field appearance="fill" class="example">
                                    <mat-label>Password</mat-label>
-                                   <input matInput formControlName="password" />
-                                   <mat-error *ngIf="register.get('password')?.invalid">{{getErrorMessagepassword()}}</mat-error>
+                                   <input matInput #password formControlName="password" />
+                                   <mat-error
+                                          *ngIf="register.get('password')?.invalid && register.get('password')?.touched">
+                                          {{getErrorMessagepassword()}}</mat-error>
+                                   <mat-password-strength class="green" *ngIf="register.value.password"
+                                          #passwordComponent (onStrengthChanged)="onStrengthChanged($event)"
+                                          [password]="password.value">
+                                          <mat-label>{{passStr}}</mat-label>
+                                   </mat-password-strength>
+                                   <mat-hint class="passstr" align="end">{{passStr}}</mat-hint>
                             </mat-form-field>
                             <br>
                             <mat-form-field appearance="fill" class="example">
                                    <mat-label>Confirm Password</mat-label>
-                                   <input matInput formControlName="confirmPassword" (change)="Vpassword()">
-                                   <mat-error *ngIf="register.get('confirmPassword')?.invalid">{{getErrorMessageconfirmpassword()}}</mat-error>
-                                  
+                                   <input matInput formControlName="confirmPassword" #password (change)="Vpassword()">
+                                   <mat-hint class="passwordEmailError"
+                                          *ngIf="register.get('confirmPassword')?.invalid && register.get('confirmPassword')?.touched">
+                                          {{getErrorMessageconfirmpassword()}}</mat-hint>
+                                   <!-- <mat-hint class="passwordEmailError" *ngIf="msg"> {{msg}}</mat-hint> -->
                             </mat-form-field>
-                            <mat-error *ngIf="msg"> {{msg}}</mat-error>
                             <br>
                             <div>
-                                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                    <input class="example-upload" #uploadFile type="file"
                                           (change)="onUploadChange($event)" />
                             </div>
                      </mat-card-content>
                      <div mat-dialog-actions>
-                            <button mat-stroked-button type="submit" [disabled]="!register.valid"
+                            <button mat-stroked-button type="submit"
+                                   [disabled]="!register.valid || register.value.password!==register.value.confirmPassword || userNameError!==''"
                                    class="btn-block">Submit</button>
                      </div>
                      <img class="onChangeImage" *ngIf="register.value.image" mat-card-lg-image [src]="image"
                             alt="User ProfilePicture">
               </form>
        </mat-card>
-
 </div>
+<ng-http-loader></ng-http-loader>

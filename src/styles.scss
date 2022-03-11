@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .selector {
-       background-image: url("/assets/images/Shopping.webp");
+       background-image: url("/assets/images/Shopping.jpg");
        background-repeat: no-repeat;
        background-size: 100%;
    }
@@ -12,3 +12,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-repeat: no-repeat;
     background-size: 100%;
 }
+// .bdrop {
+//     background-color: #bbbbbbf2;
+//     backdrop-filter: blur(4px);
+// }
+.backdropBackground {
+    opacity: 1;
+  }

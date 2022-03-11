@@ -6,6 +6,7 @@ import { ProductComponent } from '../product/product.component';
 import Swal from 'sweetalert2';
 import { UserComponent } from '../user/user.component';
 import { NotificationService } from '../notification.service';
+import { DeleteComponent } from '../delete/delete.component';
 
 
 
@@ -17,7 +18,7 @@ import { NotificationService } from '../notification.service';
 export class HomeComponent implements OnInit {
 products:Product[]=[];
 p: number = 1;
-
+isLoading=false;
 displayedColumns: string[] = ['title', 'description', 'price','image'];
 // public dataSource = new MatTableDataSource<Product>();
   constructor(private productservice:ProductService,private dialog:MatDialog,private notifyService:NotificationService) { }
@@ -26,6 +27,7 @@ displayedColumns: string[] = ['title', 'description', 'price','image'];
     
     this.getAllProduct();
   }
+ 
   getAllProduct()
   {
     this.productservice.GetAllProduct().subscribe(
@@ -71,7 +73,21 @@ displayedColumns: string[] = ['title', 'description', 'price','image'];
         }
       })
     }
-  
+    openDialog2(e:any,i:number)
+    {
+      let dialogRef = this.dialog.open(DeleteComponent, {
+        // width: '800px',
+        autoFocus: false,
+        panelClass: 'trend-dialog',
+        data:{
+          id:this.products[i].id,
+          title:this.products[i].title,
+        }
+      });
+      dialogRef.afterClosed().subscribe(
+        (result) => {this.getAllProduct(); 
+      });
+    }
   openDialog(e:any,i?:number)
   {
     if(i==null)

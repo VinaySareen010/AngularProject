@@ -10,9 +10,13 @@
       <a mat-button [routerLink]="'/home'"> Home</a>
       <a mat-button [routerLink]="'/about'"> About </a>
       <a mat-button [routerLink]="'/product'"> Product </a>
+      <a mat-button [routerLink]="'/extra'"> Extra </a> 
+      <a mat-button [routerLink]="'/extrawork'"> ExtraWork </a> 
       <a mat-button routerLink="user">User</a>
-      <a class="register-button" mat-raised-button color="primary" routerLink="register">Register</a>
-      <a class="login-button" mat-raised-button color="warn" routerLink="login">Login</a>
+      <a *ngIf="userService.currentUserName" class="login-button">{{userService.currentUserName}}</a>
+      <a *ngIf="userService.currentUserName" mat-raised-button color="primary" (click)="logOutClick()">LogOut</a>
+      <a *ngIf="!userService.currentUserName" class="login-button" mat-raised-button color="primary" routerLink="register">Register</a>
+      <a *ngIf="!userService.currentUserName" class="loginclick" mat-raised-button color="primary" routerLink="login">Login</a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card *ngIf="confirmationSuccess==false" class="box">
+     
+        <p >Click here to confirm your email </p><button mat-raised-button color="primary" [class.spinner]="loading"
+          [disabled]="loading" class="btn-block" (click)="emailConfirmation()">Click here
+        </button>
+      <mat-error *ngIf="confirmationError">{{confirmationError}}</mat-error>
+    </mat-card>
+    <mat-card *ngIf="confirmationSuccess==true" class="box1">
+      <img class="" mat-card-lg-image src="/assets/images/success.png">
+      <p fxLayout="row" class="EmailVerified">Your Email Verified Successfully,Please Go To <a routerLink="/login">Login
+          Page</a></p>
+    </mat-card>
+  </div>
+</div>

@@ -1,9 +1,12 @@
-import { validateVerticalPosition } from '@angular/cdk/overlay';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { Component,OnDestroy, OnInit } from '@angular/core';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notification.service';
 import { UserService } from '../user.service';
+import { debounceTime } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-register',
@@ -12,38 +15,89 @@ import { UserService } from '../user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit ,OnDestroy{
- 
 // user:User=new User();
-// pass:any="";
-// conPass:any="";
 msg:string="";
-
+emailError:string='';
+userNameError:string="";
 image:string="";
 submitted = false;
+passStr:string="";
 
 register=new FormGroup({
 userName:new FormControl('', [Validators.required, Validators.minLength(6)]),
-email:new FormControl('',[Validators.required,Validators.email]),
+email:new FormControl('',{validators:[Validators.required,Validators.email],updateOn:"change"}),
 password:new FormControl('',[Validators.minLength(5),Validators.required]),
-confirmPassword:new FormControl('',[Validators.required])
-}
-);
-
-
-  constructor(private userService:UserService,private notifyService:NotificationService,private route:Router,private formBuilder:FormBuilder) { 
-    // this.register = this.formBuilder.group({
-    //   userName: ["", Validators.required,Validators.minLength(4)],
-    //   email: ["", [Validators.required, Validators.email]],
-    //   password: ["",Validators.required,Validators.minLength(4)],
-    //   confirmPassword: ["", Validators.required],
-    //   image:[""]
-    // });
-  }
-
+confirmPassword:new FormControl('',[Validators.required]),
+// registerDateTime:new FormControl('')
+});
+  constructor(private userService:UserService,private notifyService:NotificationService,private route:Router) { }
   ngOnInit(): void {
     document.body.className = "register";
   }
-
+  debounceUserName()
+  {
+    this.register.get('userName')?.valueChanges.pipe(debounceTime(1000)).subscribe(
+      (response)=>{
+        if(response.length>=6)
+        {
+        console.log(this.register.value.userName);
+        
+        this.uniqueUserName();
+        }
+        else{
+          this.userNameError='';
+        }
+        this.getErrorMessagename();
+      }
+    )
+  }
+  uniqueUserName()
+  {
+    this.userService.isUniqueUserName(this.register.value.userName).subscribe(
+      (response)=>{ 
+        this.userNameError='';
+      },
+      (error)=>{
+        this.userNameError=error.error;
+      }
+    )
+  }
+debounceEmail()
+{
+  this.register.get('email')?.valueChanges.pipe(debounceTime(1000)).subscribe(
+    (reponse)=>{
+     
+        console.log(this.register.value.email);
+        this.getErrorMessage();
+        this.uniqueEmail();
+});
+}
+//email check
+uniqueEmail()
+{
+  this.userService.isUniqueUser(this.register.value.email).subscribe(
+    (response)=>{ console.log(response);
+      this.emailError='';
+   },
+   (error)=>{
+     this.emailError=error.error;
+  }
+  );
+}
+onStrengthChanged(strength: number) {
+  (console.log("Password Strength=", strength))
+	if ( strength <= 20 ) {
+    this.passStr="Poor";
+		} else if ( strength <= 40 ) {
+      this.passStr="Weak";
+		} else if ( strength <= 60 ) {
+			this.passStr="Good";
+		} else if (strength <= 80 ) {
+			this.passStr="Very Good";
+		} else {
+			this.passStr="Excellent";
+		}
+}
 //validations
 getErrorMessage() {
   if (this.register.get('email')?.hasError('required')) {
@@ -72,21 +126,18 @@ getErrorMessageconfirmpassword()
   }
   return null;
 }
-
-
   ngOnDestroy(){
     document.body.className="";
   }
- 
   registerClick()
   {
-    if (this.register.dirty && this.register.valid) {
-      alert(`NAME: ${this.register.value.userName} Email: ${this.register.value.email}`);
-    }
-  
     this.register.value.id=0;
     this.userService.registerUser(this.register.value).subscribe(
       (response)=>{
+        debugger
+        const now = new Date();
+              now.setMinutes(now.getMinutes() + 15);
+        localStorage.setItem('registerUserTime',now.toString());
         this.route.navigateByUrl("/login");
         this.notifyService.showSuccess("Register Successfully")
       },
@@ -108,23 +159,15 @@ getErrorMessageconfirmpassword()
 }
 Vpassword()
 {
+  // const condition=form.get('password')?.value!==form.get('confirmPassword')?.value
+  // return condition?{passwordDoNotMatch:true}:null;
   if(this.register.value.password==this.register.value.confirmPassword)
   {
-    this.msg="PasWord Match";
-    // this.register.value.confirmPassword.setErrors(null);
+    this.msg="";
   }
   else{
-    this.msg="Not Mached";
-    // this.register.value.confirmPassword.setErrors({Wrong:true});
+    this.msg="Password and ConfirmPassword not matched";
   }
-  // debugger;
-  // if(this.user.password!=this.user.confirmPassWord){
-  //   this.msg="Not mached"
 }
- 
-  // debugger;
-  // const {value:password}=this.user.password;
-  // const {value:confirmPassWord}=this.user.confirmPassWord;
-  // return password==confirmPassWord?null:{passwordmatch:false};
 }
 

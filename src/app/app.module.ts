@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProductComponent } from './product/product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserComponent } from './user/user.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatButtonModule}from '@angular/material/button';
 import{ MatToolbarModule}from '@angular/material/toolbar';
@@ -35,8 +34,8 @@ import { ProductguardService } from './productguard.service';
 import { UserService } from './user.service';
 import { LoginguardService } from './loginguard.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ExtraComponent } from './extra/extra.component';
-import { ExtraworkComponent } from './extrawork/extrawork.component';
+import { UserComponent } from './user/user.component';
+
 
 
 @NgModule({
@@ -44,13 +43,11 @@ import { ExtraworkComponent } from './extrawork/extrawork.component';
     AppComponent,
     HomeComponent,
     ProductComponent,
-    UserComponent,
     LoginComponent,
     RegisterComponent,
     EmailConfirmationComponent,
     DeleteComponent,
-    ExtraComponent,
-    ExtraworkComponent 
+    UserComponent
   ],
   imports: [
     BrowserModule,

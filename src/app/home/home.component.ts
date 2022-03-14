@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -7,6 +7,9 @@ import Swal from 'sweetalert2';
 import { UserComponent } from '../user/user.component';
 import { NotificationService } from '../notification.service';
 import { DeleteComponent } from '../delete/delete.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 
 
 
@@ -15,17 +18,28 @@ import { DeleteComponent } from '../delete/delete.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-products:Product[]=[];
+export class HomeComponent implements OnInit{//,AfterViewInit ,OnDestroy
+ products:Product[]=[];
+ 
+// dataSource:any;
+// obs!: Observable<any>;
 p: number = 1;
 isLoading=false;
-displayedColumns: string[] = ['title', 'description', 'price','image'];
-// public dataSource = new MatTableDataSource<Product>();
+displayedColumns: string[] = ['title', 'description', 'price', 'subCategoryId'];
+
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private productservice:ProductService,private dialog:MatDialog,private notifyService:NotificationService) { }
+  // ngAfterViewInit() {
+  //   this.dataSource = new MatTableDataSource(this.products);
+  //   this.dataSource.paginator = this.paginator;
+  //   this.obs = this.dataSource.connect();
+  // }
 
   ngOnInit(): void {
     
     this.getAllProduct();
+    // this.dataSource.paginator=this.paginator;
   }
  
   getAllProduct()
@@ -33,6 +47,7 @@ displayedColumns: string[] = ['title', 'description', 'price','image'];
     this.productservice.GetAllProduct().subscribe(
       (Response)=>{
         this.products=Response;
+      
       },
       (error)=>{
         console.log(error);
@@ -73,21 +88,37 @@ displayedColumns: string[] = ['title', 'description', 'price','image'];
         }
       })
     }
-    openDialog2(e:any,i:number)
+    openDialog2(id:number,title:string)
     {
+      alert(id)
       let dialogRef = this.dialog.open(DeleteComponent, {
         // width: '800px',
         autoFocus: false,
         panelClass: 'trend-dialog',
         data:{
-          id:this.products[i].id,
-          title:this.products[i].title,
+          id:id,
+          title:title,
         }
       });
       dialogRef.afterClosed().subscribe(
         (result) => {this.getAllProduct(); 
       });
     }
+    // openDialog2(e:any,i:number)
+    // {
+    //   let dialogRef = this.dialog.open(DeleteComponent, {
+    //     // width: '800px',
+    //     autoFocus: false,
+    //     panelClass: 'trend-dialog',
+    //     data:{
+    //       id:this.products[i].id,
+    //       title:this.products[i].title,
+    //     }
+    //   });
+    //   dialogRef.afterClosed().subscribe(
+    //     (result) => {this.getAllProduct(); 
+    //   });
+    // }
   openDialog(e:any,i?:number)
   {
     if(i==null)

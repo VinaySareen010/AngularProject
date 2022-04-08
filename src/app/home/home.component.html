@@ -4,30 +4,29 @@
     <td mat-cell *matCellDef="let emp"> {{emp.Id}} </td>
   </ng-container>
 </table> --> 
-
-  <button  mat-raised-button class="new-Button" (click)="openDialog($event)" >New Product</button>
+<script type="module" src="https://unpkg.com/@mat3e-ux/stars"></script>
+  <button  mat-raised-button class="new-Button" (click)="openDialog($event)"><mat-icon>add_circle</mat-icon>New Product</button>
 <div mat-dialog-content></div>
 <div >
-<ng-container class="ex-card" size="50%" *ngFor="let product of products| paginate: { itemsPerPage: 3, currentPage: p };let i=index">
-                                                                               <!-- obs| async -->
+<ng-container class="ex-card" size="50%" *ngFor="let product of products| paginate: { itemsPerPage: 4, currentPage: p };let i=index">
   <mat-card class="container">
     <mat-card-header>
-      <img img mat-card-lg-image [src]="product.image" alt="Product image">
+      <img img mat-card-lg-image (click)="getProductDeatilsById($event,i)" [src]="product.image" alt="Product image">
+      
       </mat-card-header>
       <mat-card-content>
         <!-- <span [hidden]="true">{{product.id}}</span> -->
-       
         <mat-card-title>{{product.title}}</mat-card-title>
         <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
         <mat-card-title>${{product.price}}</mat-card-title>
       </mat-card-content>
+      <div fxLayout="row" >
+        <ngx-stars [initialStars]="product.ratingAvg" [readonly]="true" [size]="2"></ngx-stars>
+    </div>
+     
       <mat-card-actions>
-        <button mat-raised-button color="primary">Detail</button>
-        <button mat-raised-button color="accent">AddToCart</button>
-      </mat-card-actions>
-      <mat-card-actions>
-        <button mat-raised-button  (click)="openDialog($event,i)">Edit Product</button>
-        <button mat-raised-button color="warn" (click)="openDialog2(product.id,product.title)">Delete Product</button>
+        <button mat-raised-button  (click)="openDialog($event,i)"><mat-icon>edit</mat-icon>Edit Product</button>
+        <button mat-raised-button color="warn" (click)="openDialog2(product.id,product.title)"><mat-icon>delete</mat-icon>Delete Product</button>
          <!-- <button mat-raised-button color="warn" (click)="openDialog2($event,i)">Delete Product</button> -->
       </mat-card-actions>
     </mat-card>
@@ -39,5 +38,6 @@
  <pagination-controls class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
 <br>
 <br>
+
 
 

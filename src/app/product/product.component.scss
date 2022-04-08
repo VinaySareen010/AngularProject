@@ -17,10 +17,11 @@ mat-button
 }
 .mat-dialog-content
 {
+       overflow-y: hidden;
       column-width: 2;
 }
 mat-card
 {
        width: 40%;
-       height: 50%;
+       height: 100%;
 }

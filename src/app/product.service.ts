@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Product } from './product';
+import { Product, rating } from './product';
 import { SubCategory } from './sub-category';
 
 @Injectable({
@@ -31,5 +31,14 @@ export class ProductService{
   getsubCategories():Observable<SubCategory[]>
   {
     return this.httpclient.get<SubCategory[]>("https://localhost:44370/api/SubCategory");
+  }
+  getProductRatingByProductID():Observable<any>
+  {
+    return this.httpclient.get<any>("https://localhost:44370/api/Product/GetProductRatingByProductId");
+  }
+  rateProduct(rating:rating):Observable<any>
+  {
+    debugger;
+    return this.httpclient.put<any>("https://localhost:44370/api/Product/UpdateRating",rating);
   }
 }

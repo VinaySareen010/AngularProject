@@ -7,6 +7,7 @@ export class Product {
     price:any;
     image:any;
     subCategoryId:any;
+    ratingAvg:any;
     constructor()
     {
         this.id=null;
@@ -15,5 +16,16 @@ export class Product {
         this.price=null;
         this.image=null;
         this.subCategoryId=null;
+        this.ratingAvg=null;
+    }
+}
+export class rating
+{
+    productId:any;
+    ratingAvg:any;
+    constructor()
+    {
+        this.productId=null;
+        this.ratingAvg=null;
     }
 }

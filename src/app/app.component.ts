@@ -18,7 +18,7 @@ export class AppComponent implements OnInit  {
 
     var currentUser:any=sessionStorage.getItem('currentUser');
     var userDetail:any=JSON.parse(currentUser);
-    this.userService.currentUserName!=userDetail.email;
+    this.userService.currentUserName=userDetail.email;
       //this.currentUserEmail=sessionStorage.getItem('currentUserEmail');
   }
   logOutClick()

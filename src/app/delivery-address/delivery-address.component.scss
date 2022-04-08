@@ -1,0 +1,66 @@
+.closebutton
+{
+       font-size: 30px;
+       font-weight: 600;
+}
+.mat-dialog-content
+{
+       border-top: 1px solid black;
+}
+.close
+{
+       margin-right: 10px;
+       font-size: 29px;
+       font-weight: 600;
+}
+.rediobutton
+{
+       margin-top: 8px;
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+       border-color: blue;
+       margin-right: 8px;
+   }
+   .mat-dialog-content
+   {
+       //    overflow-y: hidden;
+       //   column-width: 2;
+   }
+   .addressType
+   {
+          text-align: center;
+          border-radius: 4px;
+          margin-left: 7px;
+          height: 28px;
+          border-bottom: 1px solid black;
+   }
+   .borderbottom
+   {
+          border-bottom:1px solid black ;
+   }
+   .fullAddress
+   {
+          font-size: medium;
+          font-weight: 300;
+   }
+   .digit
+   {
+          margin-left:"10px";
+          
+   }
+   .mat-form-field {
+       font-size: inherit;
+       font-weight: 400;
+       margin-left: 6px;
+       line-height: 1.125;
+       font-family: Roboto, "Helvetica Neue", sans-serif;
+       letter-spacing: normal;
+   }
+   .borderset
+   {
+          border:3px solid rgb(111, 201, 111)
+   }
+   .topclass
+   {
+          height: 30px;
+   }

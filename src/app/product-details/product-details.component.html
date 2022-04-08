@@ -1,0 +1,46 @@
+<mat-card class="example-card">
+       <div fxLayout="row">
+              <div class="image" fxLayout="row">
+                     <div>
+                            <img class="detail-image" mat-card-image src={{ProductDetail.image}}>
+                     </div>
+                     <b class="details">
+                            <p>
+                                   <mat-card-title-group>
+                                          <mat-card-title class="titleproduct">{{ProductDetail.title}}</mat-card-title>
+                                          <button mat-button class="addToCart" (click)="addToCart()">
+                                                 <mat-icon>add_shopping_cart</mat-icon>AddToCart
+                                          </button>
+                                          <mat-card-subtitle class="productprice">${{ProductDetail.price}}
+                                          </mat-card-subtitle>
+                                          <mat-card-subtitle class="OnlineExclusive">{{"Online Exclusive"}}
+                                          </mat-card-subtitle>
+                                          <ngx-stars [readonly]="true" [initialStars]="ratingDisplay" [size]="2">
+                                          </ngx-stars>
+                                   </mat-card-title-group>
+                            </p>
+                            <div class="bottomdata">
+                                   <mat-card-content>
+                                          <div fxLayout="row">
+                                                 <mat-card-title class="color">{{"Color"}}:</mat-card-title>
+                                                 <mat-card-subtitle class="colorSubtitle">{{"Dark Indigo"}}
+                                                 </mat-card-subtitle>
+                                          </div>
+                                   </mat-card-content>
+                            </div>
+                            <mat-card-footer>
+                                   <mat-card-title class="description">{{"Specifications"}}:-</mat-card-title>
+                                   <mat-card-subtitle class="description">{{ProductDetail.description}}
+                                   </mat-card-subtitle>
+                                   <div class="ratingDiv" fxLayout="row">
+                                          <mat-label class="AddRating">{{"Rate Product"}}</mat-label>
+                                          <mat-icon class="ratingIcon">keyboard_arrow_right</mat-icon>
+                                          <ngx-stars class="saveStars" [readonly]="false"
+                                                 (ratingOutput)="rateProduct($event)" [size]="2"></ngx-stars>
+                                          <!-- <span style="font-weight: bold; font-size: 20px">Rating is {{ ratingOutput }} out of 5</span>  -->
+                                   </div>
+                            </mat-card-footer>
+                     </b>
+              </div>
+       </div>
+</mat-card>

@@ -9,7 +9,6 @@ import { NotificationService } from './notification.service';
 export class LoginguardService implements CanActivate {
   constructor(private notificationService:NotificationService,private router:Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    debugger;
     const currentUser = sessionStorage.getItem("currentUser");
     if(currentUser!=null)
     {

@@ -38,13 +38,11 @@ currentUserEmail:any="";
         // this.currentUserEmail=response.email;
         // sessionStorage.setItem('currentUserEmail',this.currentUserEmail);
           this.router.navigateByUrl("/home");
-          localStorage.setItem("isLoggedin","true");
           this.notifyService.showSuccess("Logged In Success");
          //window.location.reload();
       },
       (error)=>{
         console.log(error);
-        localStorage.setItem("isLoggedin","false");
         this.loginError=error.error;
         this.notifyService.showWarning("wrong UserName and Password");
       }

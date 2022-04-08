@@ -19,13 +19,13 @@ title:string="";
   }
   onDelete() {
 
-    this.productservice.deleteProduct(this.id).subscribe(
+    this.productservice.deleteProduct(this.id).subscribe(     
       (Response) => {
         this.onNoClick();
       },
       (error) => {
         console.log(error);
-      }
+      }   
     );
   }
   onNoClick() {                   //after save and update Close dialog box

@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 })
 export class EmailConfirmationComponent implements OnInit {
   userId: any = 0;
-  confirmationError: string = "";
+  confirmationError: string = "" ;
   loading:boolean=false;
   confirmationSuccess:boolean=false;
   constructor(private userService: UserService, private router: ActivatedRoute) { }

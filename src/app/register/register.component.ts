@@ -64,9 +64,8 @@ confirmPassword:new FormControl('',[Validators.required]),
   }
 debounceEmail()
 {
-  this.register.get('email')?.valueChanges.pipe(debounceTime(1000)).subscribe(
+  this.register.get('email')?.valueChanges.pipe(debounceTime(2000)).subscribe(
     (reponse)=>{
-     
         console.log(this.register.value.email);
         this.getErrorMessage();
         this.uniqueEmail();

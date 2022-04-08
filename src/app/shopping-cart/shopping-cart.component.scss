@@ -1,0 +1,128 @@
+.demo-table {
+       width: 70%;
+     }
+     
+     .mat-row .mat-cell {
+       border-bottom: 1px solid transparent;
+       border-top: 1px solid transparent;
+       cursor: pointer;
+       width: 60px;
+     }
+     
+    //  .mat-row:hover .mat-cell {
+    //    border-color: currentColor;
+    //  }
+     
+     .demo-row-is-clicked {
+       font-weight: bold;
+     }
+     .imageShow
+     {
+       width: 300px;
+     }
+     .title
+     {
+       margin-top: 20px;
+       .titledesign
+       {
+         font-size: 20px;
+         font-weight: 500;
+         border-bottom: 1px solid red;
+       }
+       .description
+       {
+        font-size: 15px;
+        font-weight: 500;
+       }
+     }
+     .divsize
+     {
+       width: 500px;
+     }
+     mat-card-header
+     {
+       a{
+        background-color: rgb(12, 12, 49) ;
+        color: white;
+        margin-left: 1215px;
+       }
+       
+       margin-bottom: 20px;
+     }
+     .rowmatcard
+     {
+       height: fit-content;
+      float: right;
+      width: 30%;
+     }
+     .mat-card{
+     
+      background-color: rgb(223, 233, 138);
+     }
+     .mat-card-header .mat-card-title  {
+      margin-bottom: 12px;
+      font-size: 28px;
+  }
+  .mat-card-footer
+  {
+    margin-bottom: 12px;
+      font-size: 28px;
+  }
+    .mat-card-content
+    {
+      .mat-card
+      {margin-left: 15px;
+        background-color: white;
+        .mat-card-footer
+        {
+         
+        }
+      }
+    }
+    .productDetails
+    {
+      width: 80%;
+    }
+    .margins
+    {
+      margin-left:12px;
+    }
+    .mat-card-title:not(:first-child), .mat-card-subtitle:not(:first-child) {
+      margin-top: -4px;
+  }
+  
+  .mat-card-content .mat-card .mat-card-footer{
+    border-top: 1px solid green;
+    margin-top: 183px;
+}
+.mat-card-content .mat-card .mat-card-footer .mat-card-title
+{
+  margin-top: 7px;
+  margin-left: 33px;  
+}
+.paragraph{
+  margin: 0 0 12px;
+  margin-top: 8px;
+  margin-left: 41px;
+}
+.ProccedToCheckOut
+{
+  color: white;
+  background-color: green;
+  margin-right: 40px;
+  float: right;
+}
+.mat-card-actions {
+  margin-left: 20px;
+  padding: 30px 10px;
+}
+.ProccedTodeliver
+{
+  color: white;
+  background-color: rgb(0, 85, 128);
+  margin-left: 10px;
+  float: left;
+}
+.mat-card-actions .mat-button, .mat-card-actions .mat-raised-button, .mat-card-actions .mat-stroked-button {
+  margin: 0 23px;
+}

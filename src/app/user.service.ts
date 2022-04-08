@@ -18,7 +18,6 @@ export class UserService {
   }
   loginUser(loginVM:LoginVM):Observable<LoginVM>
   {
-    debugger;
     return this.httpClient.post<LoginVM>("https://localhost:44370/api/User/Login",loginVM)
     .pipe(map(u=>{
       if(u)

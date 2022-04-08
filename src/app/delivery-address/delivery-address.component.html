@@ -1,0 +1,47 @@
+<div class="topclass" fxLayout="row">
+<a class="closebutton" [mat-dialog-close]><mat-icon class="close" >clear</mat-icon></a>
+<h1 mat-dialog-title >Select Delivery Address</h1>
+</div>
+<div mat-dialog-content>
+       <h2 class="rediobutton" *ngFor="let address of deliveryAddress">      
+              <mat-radio-button color="primary" (click)="selectUser(address.id)" ></mat-radio-button><mat-label>{{address.user.userName}},{{address.pinCode}}</mat-label>
+              &nbsp;&nbsp; <button mat-raised-button class="addressType" [disabled]="true">{{address.addressType}}</button><br>
+               &nbsp;&nbsp; &nbsp;&nbsp;<mat-label class="fullAddress">{{address.address}},{{address.nearBy}},{{address.city}},{{address.state}},{{address.country}}</mat-label>
+       </h2>
+</div>
+<h3 class="borderbottom"></h3>
+<mat-label>Add a New Address:-</mat-label><br>
+<form [formGroup]="addressForm" (ngSubmit)="saveAddress()">
+       <div class="borderset"><br>
+       <mat-form-field  style="width: 40%;" appearance="fill">
+              <mat-label>Pin Code</mat-label>
+              <input matInput  formControlName="pinCode"/>
+            </mat-form-field>
+            <mat-form-field class="digit" style="width: 40%;" appearance="fill">
+              <mat-label>10-digit Mobile Number</mat-label>
+              <input matInput  formControlName="phone"/>
+            </mat-form-field>
+            <mat-form-field style="width:81%" appearance="fill">
+              <mat-label>Address(Area and Street)</mat-label>
+              <textarea matInput formControlName="address"></textarea>
+            </mat-form-field>
+            <mat-form-field style="width: 40%;" appearance="fill">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" />
+            </mat-form-field>
+            <mat-form-field style="width: 40%;" appearance="fill">
+              <mat-label>State</mat-label>
+              <input matInput formControlName="state" />
+            </mat-form-field>
+            <mat-form-field style="width: 40%;" appearance="fill">
+              <mat-label>LandMark(Optional)</mat-label>
+              <input matInput formControlName="nearBy" />
+            </mat-form-field>
+            <mat-form-field style="width: 40%;" appearance="fill">
+              <mat-label>Alternate Phone(Optional)</mat-label>
+              <input matInput formControlName="alternatephoneNumber" />
+            </mat-form-field>
+       </div>
+       <button type="submit" mat-raised-button style="background-color:orange; color:white;margin-top:3px" (click)="saveAddress()">Save Address</button>
+</form>
+            

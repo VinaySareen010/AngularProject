@@ -18,17 +18,15 @@ export class ProductComponent implements OnInit {
 image:string=""; //image show
 newProduct:Product=new Product(); //for 2wayBinding
 subCategory:SubCategory[]=[]; //for subcategory List Show
-
-
 product=new FormGroup({     // useformGroup|
 id:new FormControl(''),                     
 title:new FormControl(''),
 description:new FormControl(''),
 price:new FormControl(''),
 subCategoryId:new FormControl(''),
-image:new FormControl('')
+image:new FormControl(''),
+ratingAvg:new FormControl('')
 });
-
   constructor(private productservice:ProductService,private dialogConfig: MatDialogRef<ProductComponent>,@Inject(MAT_DIALOG_DATA) public data:Product
        ,private notifyService:NotificationService ){ }
 
@@ -40,11 +38,10 @@ image:new FormControl('')
       description:this.data.description,
       price:this.data.price,
       subCategoryId:this.data.subCategoryId,
-      image:this.data.image
-
+      image:this.data.image,
+      ratingAvg:this.data.ratingAvg
     });
     this.image=this.data.image       //show image in edit case
-        
     //ngModel TwoWay Binding
       // this.newProduct.id=this.data.id;
       // this.newProduct.title=this.data.title;
@@ -89,7 +86,8 @@ image:new FormControl('')
   }
   UpdateProduct()     //Update Product Method
   {
-    this.productservice.updateProduct(this.newProduct).subscribe(
+    debugger;
+    this.productservice.updateProduct(this.product.value).subscribe(
       (response)=>{
         this.notifyService.showSuccess("Product Updated Successfully");
         this.onNoClick();
@@ -109,7 +107,7 @@ image:new FormControl('')
         });
   }
 }
-onNoClick() {                   //after save and update Close dialog box
+onNoClick() {                //after save and update Close dialog box
   this.dialogConfig.close();
 }
 }

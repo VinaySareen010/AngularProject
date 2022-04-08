@@ -1,0 +1,69 @@
+<mat-card>
+       <mat-card-header>
+              <a mat-raised-button routerLink="/home">Continue Shopping</a>
+       </mat-card-header>
+       <mat-card-content fxLayout="row">
+              <table mat-table [dataSource]="cartData" class="mat-elevation-z8 demo-table">
+                     <!-- Position Column -->
+                     <ng-container matColumnDef="Items">
+                            <th mat-header-cell *matHeaderCellDef>Items</th>
+                            <td mat-cell *matCellDef="let element">
+                                   <mat-card class="productDetails" fxLayout="row">
+                                          <mat-card-content>
+                                                 <img img mat-card-lg-image [src]="element.product.image"
+                                                        alt="Product image" height="100%" width="40%">
+                                          </mat-card-content>
+                                          <mat-card-content>
+                                                 <mat-card-title>{{element.product.title}}</mat-card-title>
+                                                 <mat-card-subtitle>{{element.product.description}}</mat-card-subtitle>
+                                          </mat-card-content>
+                                   </mat-card>
+                            </td>
+                     </ng-container>
+                     <!-- Name Column -->
+                     <ng-container matColumnDef="count">
+                            <th mat-header-cell *matHeaderCellDef>Count</th>
+                            <td mat-cell *matCellDef="let element">{{element.count}}</td>
+                     </ng-container>
+                     <!-- Weight Column -->
+                     <!-- <ng-container matColumnDef="Price">
+                            <th mat-header-cell *matHeaderCellDef>Price</th>
+                            <td mat-cell *matCellDef="let element">{{element.Price}}</td>
+                     </ng-container> -->
+                     <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let element"><a (click)="deleteData()">
+                                          <mat-icon>delete</mat-icon>
+                                   </a></td>
+                     </ng-container>
+                     <!-- <ng-container matColumnDef="Action2">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let element">{{element.product.price*element.count}}</td>
+                            <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+                     </ng-container> -->
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-card class="rowmatcard">
+                     <mat-card-header>
+                            <mat-card-title>Summary:-</mat-card-title>
+                     </mat-card-header>
+                     <mat-card-content *ngFor="let products of cartData;let i=index" class="summaryclass"> 
+                            <div  fxLayout="row">
+                            <mat-card-title class="margins">{{i +1}}</mat-card-title>
+                            <mat-card-title class="margins">{{products.title}}</mat-card-title>
+                            <mat-card-title class="margins">{{products.product.price}} <mat-icon class="CLEAR">clear</mat-icon>{{products.count}}</mat-card-title>
+                            <mat-card-title class="margins"><mat-icon> drag_handle</mat-icon>{{products.product.price*products.count}}</mat-card-title>
+                            </div>
+                     </mat-card-content>
+                     <mat-card-footer >
+                            <div fxLayout="row"><mat-card-title>Total per product:-</mat-card-title><p class="paragraph">{{totalCost}}</p></div>
+                            <mat-card-actions>
+                                   <button  mat-raised-button class="ProccedTodeliver" (click)="makePayment()">Choose Delivery Address</button>
+                                   <button class="ProccedToCheckOut" mat-raised-button >Procced To CheckOut</button>
+                            </mat-card-actions>
+                     </mat-card-footer>
+              </mat-card>
+       </mat-card-content>
+       
+</mat-card>

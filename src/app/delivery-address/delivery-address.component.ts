@@ -1,8 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { DeliveryAddress } from '../shopping-cart';
 import { ShoppingCartService } from '../shopping-cart.service';
+
+
+enum NodeType {
+  Home=1,
+  Work
+}
 
 @Component({
   selector: 'app-delivery-address',
@@ -10,6 +17,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
   styleUrls: ['./delivery-address.component.scss']
 })
 export class DeliveryAddressComponent implements OnInit {
+  nodeType=NodeType;
 deliveryAddress:any;
 addressForm=new FormGroup({
 id:new FormControl(''),
@@ -24,11 +32,15 @@ alternatephoneNumber:new FormControl(null),
 pinCode:new FormControl(''),
 addressType:new FormControl(0)
 });
+
   constructor( public dialogRef: MatDialogRef<DeliveryAddressComponent>,
     @Inject(MAT_DIALOG_DATA) public data:DeliveryAddress,private shoppingCartService:ShoppingCartService) { }
   ngOnInit(): void {
-    alert(this.data.userId);
     this.getUserAddressByUserId();
+  }
+  public onClick(node: NodeType): void {
+    debugger;
+    this.addressForm.value.addressType = node;
   }
   getUserAddressByUserId()
   {
@@ -53,13 +65,15 @@ addressType:new FormControl(0)
     this.shoppingCartService.saveAddress(this.addressForm.value).subscribe(
       (response)=>{
           this.dialogRef.close();
+          this.selectUserAddress(response.id);
       },
       (error)=>{
         console.log(error);
       }
     )
   }
-  selectUser(addressId:number)
+  selectUserAddress(addressId:number)
   {
+    alert(addressId);
   }
 }

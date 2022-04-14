@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {  Router } from '@angular/router';
+import {  ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 import { DeliveryAddressComponent } from '../delivery-address/delivery-address.component';
 import { NotificationService } from '../notification.service';
@@ -52,7 +52,7 @@ displayedColumns: string[] = ['Items','count','Action']
     }
     //  this.totalCost=data3.reduce((acc:any, value:any) => acc + value, 0);
   }
-  makePayment()
+ DeliveryAddressSelect()
   {
     const dialogRef = this.dialog.open(DeliveryAddressComponent, {
       width: '900px',
@@ -61,12 +61,16 @@ displayedColumns: string[] = ['Items','count','Action']
     });
     dialogRef.afterClosed().subscribe(result => {
     });
-  //   let navigationExtras: NavigationExtras = {
-  //     queryParams: {
-  //         Reference: this.totalCost,
-  //     }
-  //    };
-  //     this.router.navigate(['/paymentPage'],navigationExtras);
-  // }
+  
 }
+makePayment()
+{
+  let navigationExtras: NavigationExtras = {
+      queryParams: {
+          Reference: this.totalCost,
+      }
+     };
+      this.router.navigate(['/paymentPage'],navigationExtras);
+  }
 }
+

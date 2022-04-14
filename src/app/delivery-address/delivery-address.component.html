@@ -4,8 +4,8 @@
 </div>
 <div mat-dialog-content>
        <h2 class="rediobutton" *ngFor="let address of deliveryAddress">      
-              <mat-radio-button color="primary" (click)="selectUser(address.id)" ></mat-radio-button><mat-label>{{address.user.userName}},{{address.pinCode}}</mat-label>
-              &nbsp;&nbsp; <button mat-raised-button class="addressType" [disabled]="true">{{address.addressType}}</button><br>
+              <mat-radio-button [checked]="address.addressType==1" color="primary" (click)="selectUserAddress(address.id)" ></mat-radio-button><mat-label>{{address.user.userName}},{{address.pinCode}}</mat-label>
+              &nbsp;&nbsp; <button mat-raised-button class="addressType"  [disabled]="true">{{address.addressType==1? "Home": "Work"}}</button><br>
                &nbsp;&nbsp; &nbsp;&nbsp;<mat-label class="fullAddress">{{address.address}},{{address.nearBy}},{{address.city}},{{address.state}},{{address.country}}</mat-label>
        </h2>
 </div>
@@ -40,8 +40,15 @@
             <mat-form-field style="width: 40%;" appearance="fill">
               <mat-label>Alternate Phone(Optional)</mat-label>
               <input matInput formControlName="alternatephoneNumber" />
-            </mat-form-field>
+            </mat-form-field><br>
+            <mat-label>Address Type</mat-label><br>
+            <mat-radio-button (click)="this.onClick(nodeType.Home)" *ngIf="nodeType.Home == 1">Home(All day delivery)</mat-radio-button>
+            <mat-radio-button class="addressTypesf" (click)="this.onClick(nodeType.Work)" *ngIf="nodeType.Work == 1+1">Work(Delivery between 10 AM - 5 PM)</mat-radio-button>
        </div>
        <button type="submit" mat-raised-button style="background-color:orange; color:white;margin-top:3px" (click)="saveAddress()">Save Address</button>
 </form>
+<div>
+  <h1>Welcome to angular world</h1>
+  <app-payment-success-full name="Gowtham"></app-payment-success-full>
+</div>
             

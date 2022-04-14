@@ -29,15 +29,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwtinterceptorService } from './jwtinterceptor.service';
 import { DeleteComponent } from './delete/delete.component';
-import { ProductService } from './product.service';
 import { ProductguardService } from './productguard.service';
-import { UserService } from './user.service';
 import { LoginguardService } from './loginguard.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserComponent } from './user/user.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
-import { NgxStarRatingModule } from 'ngx-star-rating';
 import { NgxStarsModule } from 'ngx-stars';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -45,6 +42,8 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { PaymentSuccessFullComponent } from './payment-success-full/payment-success-full.component';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+import { StripeModule } from 'stripe-angular';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 
@@ -63,6 +62,7 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
     PaymentPageComponent,
     PaymentSuccessFullComponent,
     DeliveryAddressComponent
+
     
    
   ],
@@ -96,8 +96,8 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
     MatIconModule,
     NgxStarsModule,
     NgxImgZoomModule,
-    MatRadioModule
-    
+    MatRadioModule,
+    NgxStripeModule.forRoot('')
 
     
     

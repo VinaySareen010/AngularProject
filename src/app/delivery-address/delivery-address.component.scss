@@ -21,16 +21,13 @@
        border-color: blue;
        margin-right: 8px;
    }
-   .mat-dialog-content
-   {
-       //    overflow-y: hidden;
-       //   column-width: 2;
-   }
    .addressType
    {
           text-align: center;
           border-radius: 4px;
-          margin-left: 7px;
+          margin-left: 7px; 
+          font-weight: 600;
+          color: black;
           height: 28px;
           border-bottom: 1px solid black;
    }
@@ -46,7 +43,6 @@
    .digit
    {
           margin-left:"10px";
-          
    }
    .mat-form-field {
        font-size: inherit;
@@ -63,4 +59,8 @@
    .topclass
    {
           height: 30px;
+   }
+   .addressTypesf
+   {
+          margin-left: 40px;
    }

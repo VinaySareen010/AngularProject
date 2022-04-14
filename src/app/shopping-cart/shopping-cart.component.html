@@ -59,8 +59,8 @@
                      <mat-card-footer >
                             <div fxLayout="row"><mat-card-title>Total per product:-</mat-card-title><p class="paragraph">{{totalCost}}</p></div>
                             <mat-card-actions>
-                                   <button  mat-raised-button class="ProccedTodeliver" (click)="makePayment()">Choose Delivery Address</button>
-                                   <button class="ProccedToCheckOut" mat-raised-button >Procced To CheckOut</button>
+                                   <button  mat-raised-button class="ProccedTodeliver" (click)="DeliveryAddressSelect()">Choose Delivery Address</button>
+                                   <button class="ProccedToCheckOut" mat-raised-button (click)="makePayment()">Procced To CheckOut</button>
                             </mat-card-actions>
                      </mat-card-footer>
               </mat-card>

@@ -38,7 +38,6 @@ export class ProductService{
   }
   rateProduct(rating:rating):Observable<any>
   {
-    debugger;
     return this.httpclient.put<any>("https://localhost:44370/api/Product/UpdateRating",rating);
   }
 }

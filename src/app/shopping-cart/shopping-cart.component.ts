@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {  ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-
+import { Router } from '@angular/router';
 import { DeliveryAddressComponent } from '../delivery-address/delivery-address.component';
 import { NotificationService } from '../notification.service';
-
 import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
@@ -13,7 +11,8 @@ import { ShoppingCartService } from '../shopping-cart.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  userId!:number;
+ userId!:number;
+deliveryAddressId!:number;
 cartData!:any[];
 totalCost:number=0;
 displayedColumns: string[] = ['Items','count','Action']
@@ -60,17 +59,20 @@ displayedColumns: string[] = ['Items','count','Action']
       data: { userId:this.userId},
     });
     dialogRef.afterClosed().subscribe(result => {
+      debugger;
+      this.deliveryAddressId=result;
     });
-  
 }
 makePayment()
 {
-  let navigationExtras: NavigationExtras = {
-      queryParams: {
-          Reference: this.totalCost,
-      }
-     };
-      this.router.navigate(['/paymentPage'],navigationExtras);
-  }
+    this.router.navigate(['/paymentPage'], { state: {totalCost: this.totalCost,deliveryAddressId:this.deliveryAddressId} });
+
+  // let navigationExtras: NavigationExtras = {
+  //     queryParams: {
+  //         Reference: this.totalCost,
+  //     }
+  //    };
+  //     this.router.navigate(['/paymentPage'],navigationExtras);
+   }
 }
 

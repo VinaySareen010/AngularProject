@@ -64,16 +64,19 @@ addressType:new FormControl(0)
     this.addressForm.value.userId=userId;
     this.shoppingCartService.saveAddress(this.addressForm.value).subscribe(
       (response)=>{
-          this.dialogRef.close();
-          this.selectUserAddress(response.id);
+          this.dialogRef.close(response.id);
+          // this.selectUserAddress(response.id);
       },
       (error)=>{
         console.log(error);
       }
     )
   }
-  selectUserAddress(addressId:number)
-  {
-    alert(addressId);
+  onNoClick(addressId:number): void {
+    this.dialogRef.close(addressId);
   }
+  // selectUserAddress(addressId:number)
+  // {
+  //   alert(addressId);
+  // }
 }

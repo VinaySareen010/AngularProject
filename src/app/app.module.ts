@@ -44,6 +44,7 @@ import { NgxImgZoomModule } from 'ngx-img-zoom';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { StripeModule } from 'stripe-angular';
 import { NgxStripeModule } from 'ngx-stripe';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 
@@ -97,7 +98,9 @@ import { NgxStripeModule } from 'ngx-stripe';
     NgxStarsModule,
     NgxImgZoomModule,
     MatRadioModule,
-    NgxStripeModule.forRoot('')
+    NgxStripeModule.forRoot(''),
+    AgGridModule.withComponents([]),
+    StripeModule.forRoot("pk_test_51K2URhSGiYADUaEqKkYbQIDklsw8A5igk8ehux1rvFtkqig0iwTTWhFqsFPesMhQDA3GT4L3N9TJ3XRX3pxcORVE00eMpQnPrL")
 
     
     

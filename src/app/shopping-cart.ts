@@ -40,5 +40,26 @@ export class DeliveryAddress{
               this.pinCode=null;
               this.addressType=null;
        }
+     
+}
+export class OrderDetails{
+       id:number;
+       orderDate:any;
+       shippingDate:any;
+       orderTotal:any;
+       paymentStatus:any;
+       paymentDate:any;
+       transactionId:any;
+       deliveryAdressId:any;
+       constructor(){
+              this.id=0;
+              this.orderDate=null;
+              this.shippingDate=null;
+              this.orderTotal=null;
+              this.paymentStatus=null;
+              this.paymentDate=null;
+              this.transactionId=null;
+              this.deliveryAdressId=null;
+       }
 }
 

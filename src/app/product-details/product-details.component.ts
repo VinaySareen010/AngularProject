@@ -36,7 +36,6 @@ ProductDetail:Product=new Product();
   {
     this.productservice.GetAllProduct().subscribe(
       (Response)=>{
-        debugger;
         console.log(Response);
         this.products=Response;
         const localData:any=this.products.filter((x)=>{return x.id==this.products[this.productData].id});
@@ -54,7 +53,6 @@ ProductDetail:Product=new Product();
     )
   }
   rateProduct(rating:number){
-    debugger;
     this.productRating.productId=this.ProductDetail.id;
     this.productRating.ratingAvg=rating;
     this.productservice.rateProduct(this.productRating).subscribe(

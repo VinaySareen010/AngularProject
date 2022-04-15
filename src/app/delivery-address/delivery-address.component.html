@@ -4,7 +4,7 @@
 </div>
 <div mat-dialog-content>
        <h2 class="rediobutton" *ngFor="let address of deliveryAddress">      
-              <mat-radio-button [checked]="address.addressType==1" color="primary" (click)="selectUserAddress(address.id)" ></mat-radio-button><mat-label>{{address.user.userName}},{{address.pinCode}}</mat-label>
+              <mat-radio-button [checked]="address.addressType==1" color="primary" (click)="onNoClick(address.id)" ></mat-radio-button><mat-label>{{address.user.userName}},{{address.pinCode}}</mat-label>
               &nbsp;&nbsp; <button mat-raised-button class="addressType"  [disabled]="true">{{address.addressType==1? "Home": "Work"}}</button><br>
                &nbsp;&nbsp; &nbsp;&nbsp;<mat-label class="fullAddress">{{address.address}},{{address.nearBy}},{{address.city}},{{address.state}},{{address.country}}</mat-label>
        </h2>
@@ -47,8 +47,5 @@
        </div>
        <button type="submit" mat-raised-button style="background-color:orange; color:white;margin-top:3px" (click)="saveAddress()">Save Address</button>
 </form>
-<div>
-  <h1>Welcome to angular world</h1>
-  <app-payment-success-full name="Gowtham"></app-payment-success-full>
-</div>
+
             

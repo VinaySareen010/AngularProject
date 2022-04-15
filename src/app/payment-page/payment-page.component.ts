@@ -1,11 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
-import { StripeCardComponent, StripeService } from 'ngx-stripe';
-import { StripeScriptTag } from "stripe-angular"
-
-
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+declare var Razorpay: any;
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
@@ -13,67 +7,76 @@ import { StripeScriptTag } from "stripe-angular"
  
 })
 export class PaymentPageComponent implements OnInit {
-payment:any;
-
-  constructor(private route:ActivatedRoute,public router: Router) {}
-    ngOnInit(): void {
-      debugger;
-      this.route.queryParams.subscribe(
-      (res)=>{
-        this.payment=res['Reference'];});
-        this.pay(this.payment);
-    }
-    handler:any = null;
-    pay(amount:number) {    
   
-      var handler = (<any>window).StripeCheckout.configure({
-        key: 'pk_test_51K2URhSGiYADUaEqKkYbQIDklsw8A5igk8ehux1rvFtkqig0iwTTWhFqsFPesMhQDA3GT4L3N9TJ3XRX3pxcORVE00eMpQnPrL',
-        locale: 'auto',
-        token: function (token: any) {
-          this.loadStripe();
-          // You can access the token ID with `token.id`.
-          // Get the token ID to your server-side code for use.
-          console.log(token)
-          alert('Token Created!!');
-        }
-      });
-    
-      handler.open({
-        name: 'Product Shopping',
-        description: 'Please Enter your Card Details',
-        amount: amount * 100
-      });
-    
-    }
-    
-    loadStripe() {
-        debugger;
-      if(!window.document.getElementById('stripe-script')) {
-        var s = window.document.createElement("script");
-        s.id = "stripe-script";
-        s.type = "text/javascript";
-        s.src = "https://checkout.stripe.com/checkout.js";
-        s.onload = () => {
-          this.handler = (<any>window).StripeCheckout.configure({
-            key: 'pk_test_51K2URhSGiYADUaEqKkYbQIDklsw8A5igk8ehux1rvFtkqig0iwTTWhFqsFPesMhQDA3GT4L3N9TJ3XRX3pxcORVE00eMpQnPrL',
-            locale: 'auto',
-            token: function (token: any) {
-              // You can access the token ID with `token.id`.
-              // Get the token ID to your server-side code for use.
-              console.log(token)
-              alert('Payment Success!!');
-            }
-          });
-        }
-        window.document.body.appendChild(s);
+ 
+totalCost:any;
+state$:any;
+stripePromise:any;
+deliveryAddressId:any;
+
+message:any = "Not yet stared";
+paymentId = "";
+error = "";
+title = 'angular-razorpay-intergration';
+options = {
+  "key": "",
+  "amount": "200",
+  "name": "Abhijit Gatade",
+  "description": "Web Development",
+  "image": "https://www.abhijitgatade.com/assets/img/favicon.png",
+  "order_id": "",
+  "handler": function (response: any) {
+    var event = new CustomEvent("payment.success",
+      {
+        detail: response,
+        bubbles: true,
+        cancelable: true
       }
-    }
-    navigateWithState() {
-
-     this.router.navigate(['/paymentSuccessFull'], { state: { id: "email" ,password: "password" } });
-
-    }
+    );
+    window.dispatchEvent(event);
+  },
+  "prefill": {
+    "name": "",
+    "email": "",
+    "contact": ""
+  },
+  "notes": {
+    "address": ""
+  },
+  "theme": {
+    "color": "#3399cc"
   }
-
-
+};
+ngOnInit(): void {
+  this.paynow();
+}
+paynow() {
+  this.paymentId = '';
+  this.error = '';
+  this.options.amount = "200"; //paise
+  this.options.prefill.name = "Kishor";
+  this.options.prefill.email = "gatadeabhijit@gmail.com";
+  this.options.prefill.contact = "9561320192";
+  var rzp1 = new Razorpay(this.options);
+  rzp1.open();
+  rzp1.on('payment.failed', function (response: any) {
+    //this.message = "Payment Failed";
+    // Todo - store this information in the server
+    console.log(response.error.code);
+    console.log(response.error.description);
+    console.log(response.error.source);
+    console.log(response.error.step);
+    console.log(response.error.reason);
+    console.log(response.error.metadata.order_id);
+    console.log(response.error.metadata.payment_id);
+    //this.error = response.error.reason;
+  }
+  );
+}
+@HostListener('window:payment.success', ['$event'])
+onPaymentSuccess(event: any): void {
+  this.message = "Success Payment";
+} 
+   
+}
 
